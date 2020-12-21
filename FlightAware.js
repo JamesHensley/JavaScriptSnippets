@@ -40,7 +40,8 @@ fetch(fetchUrl)
 					coordinates: d.track.map(m => m.coord)
 				},
 				properties: {
-					flightId: d.flightId
+					flightId: d.flightId,
+					carrier: d.flightId.match(/^([a-zA-Z]*)/)[1] || 'Unknown'
 				}
 			}
 		})
@@ -52,6 +53,5 @@ fetch(fetchUrl)
 	document.body.appendChild(dElem);
 	document.body.appendChild(cElem);
 	cElem.innerText = JSON.stringify(geoJson);
-
 	console.log(geoJson)
-});
+})
