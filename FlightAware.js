@@ -40,7 +40,8 @@ fetch(fetchUrl)
 			//   meridian and can handle multiple paths zig-zagging back & forth
 			var newCoords = d.track.reduce((t, n, i, e) => {
 				// Checks to see if the current longitude's sign differs from the previous longitude's sign
-				// TODO: Ignore prime-meridian cosses since most software handles this fairly well
+				// TODO: Implement better way of handling AntiMeridian crossings rather than using hard-coded
+				//   numbers (ie: 150)
 				let crossedMeridian = i > 0 ? !((e[i].coord[0] < 150) == (e[i-1].coord[0] < 150)) : false;
 				if(i == 0 || crossedMeridian) { t.push([]); }
 				t[t.length-1].push(n.coord);
